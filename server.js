@@ -6,6 +6,7 @@ const { connectDB } = require("./src/config/db");
 const port = process.env.PORT || 8888;
 
 connectDB(process.env.DB_URI);
+require("./src/config/taskReminder");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

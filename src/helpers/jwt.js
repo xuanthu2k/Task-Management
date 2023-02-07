@@ -8,7 +8,7 @@ const generateAccessToken = async (userId) => {
         };
         const secretKey = process.env.ACCESS_TOKEN_SECRET;
         const options = {
-            expiresIn: "15s",
+            expiresIn: "1h",
         };
         const token = await jwt.sign(payload, secretKey, options);
         return token;
