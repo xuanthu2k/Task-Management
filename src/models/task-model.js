@@ -20,7 +20,7 @@ const TaskSchema = new Schema(
             default: "New",
             enum: ["New", "Incomplete", "Complete"],
         },
-        sendReminder: {
+        SendReminder: {
             type: Boolean,
             default: false,
         },

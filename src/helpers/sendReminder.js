@@ -6,28 +6,29 @@ const sendReminder = async (user, task) => {
         service: "gmail",
         auth: {
             user: "xuanthuphan2k@gmail.com",
-            pass: "Xuanthu1998@",
+            pass: "whsyrgwcxououubp",
         },
     });
 
     // Setup email data
     let mailOptions = {
         from: "xuanthuphan2k@gmail.com",
-        to: user.email,
-        subject: `Reminder: ${task.title}`,
+        to: user.Email,
+        subject: `Reminder: ${task.Title}`,
         text: `Hi ${user.Name}, this is a reminder for the task "${task.Title}" with due day of ${task.DueDay}. Please complete the task on time.`,
     };
 
     // Send email
-    await transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log(
-                `Reminder email sent to ${user.Email} for task ${task.Title}`
-            );
-        }
-    });
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(
+            `Reminder email sent to ${user.Email} for task ${task.Title}`
+        );
+        return 1;
+    } catch (error) {
+        console.log(error);
+        return 0;
+    }
 };
 
 module.exports = sendReminder;
