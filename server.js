@@ -3,7 +3,14 @@ const express = require("express");
 const router = require("./src/routes/main-routes");
 const app = express();
 const { connectDB } = require("./src/config/db");
+const cors = require("cors");
 const port = process.env.PORT || 8888;
+
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 
 connectDB(process.env.DB_URI);
 require("./src/config/taskReminder");
