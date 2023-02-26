@@ -13,6 +13,7 @@ const registerController = require("../controllers/register-controller");
 const updateTaskController = require("../controllers/update-task-controller");
 const updateUserController = require("../controllers/update-user-controller");
 const verifyAccessToken = require("../middlewares/verify-access-token");
+const getSubTasksController = require("../controllers/get-subtasks-controller");
 const router = express.Router();
 
 // * Authentication
@@ -32,10 +33,17 @@ router.get("/get-info", verifyAccessToken, getUserController);
 router.patch("/update-info", verifyAccessToken, updateUserController);
 
 // * Task management
+// post task
 router.post("/task", verifyAccessToken, createTaskController);
+// get all task
 router.get("/tasks", verifyAccessToken, getTasksController);
+// get task by id
 router.get("/task/:id", verifyAccessToken, getTaskController);
+// get sub tasks by parent task id
+router.get("/subtasks/:id", verifyAccessToken, getSubTasksController);
+// update task
 router.patch("/task/:id", verifyAccessToken, updateTaskController);
+// delete task
 router.delete("/task/:id", verifyAccessToken, deleteTaskController);
 
 module.exports = router;
